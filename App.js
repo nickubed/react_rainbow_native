@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
-import PizzaTranslator from './components/pizzaTranslator'
 import ColorForm from './components/colorForm'
 
 const width = Dimensions.get('window').width
@@ -37,14 +36,6 @@ export default function App() {
       </View>
     )
   })
-
-// "Option" does not exist on mobile, thus breaking this functionality.
-//   const isValidColor = (strColor) => {
-//     var s = new Option().style;
-//     s.color = strColor;
-//     // return 'false' if color wasn't assigned
-//     return s.color == strColor.toLowerCase();
-// }
 
 const addColor = (userColor) => {
   if(userColor) {
