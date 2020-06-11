@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures'
 import ColorForm from './components/colorForm'
 
 const width = Dimensions.get('window').width
@@ -38,16 +39,31 @@ export default function App() {
     )
   })
 
-const addColor = (userColor) => {
-  if(userColor) {
-    colors = colors.concat(userColor)
+  const onSwipeLeft = () => {
+    colors = []
     setColors(colors)
   }
-}
+
+  const config = {
+    velocityThreshold: 0.3,
+    directionalOffsetThreshold: 80
+  }
+
+  const addColor = (userColor) => {
+    if(userColor) {
+      colors = colors.concat(userColor)
+      setColors(colors)
+    }
+  }
   return (
     <View style={styles.container}>
+    <GestureRecognizer
+      onSwipeLeft={() => onSwipeLeft()}
+      config={config}
+      >
       <View ul>{colorMap}</View>
       <ColorForm addColor = {addColor} />
+    </GestureRecognizer>
     </View>
   );
 }
